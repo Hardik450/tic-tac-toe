@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tic·Tac·Toe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Work+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <main class="frame">
+    <section class="board-panel">
+      <h1 class="title">Tic·Tac·Toe</h1>
+
+      <!-- Player picker -->
+      <div id="picker" class="picker">
+        <p class="prompt">Chalk up as&hellip;</p>
+        <div class="picker-buttons">
+          <button class="chalk-btn" id="pickX" type="button">X</button>
+          <button class="chalk-btn" id="pickO" type="button">O</button>
+        </div>
+      </div>
+
+      <!-- Game board -->
+      <div id="game" class="game hidden">
+        <p id="status" class="status"></p>
+        <div id="board" class="board" aria-label="Tic tac toe board"></div>
+        <button id="againBtn" class="chalk-btn again hidden" type="button">
+          Play again
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

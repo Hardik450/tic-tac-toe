@@ -1,0 +1,178 @@
+:root {
+  --chalkboard: #1f2e27;
+  --chalkboard-edge: #16221c;
+  --chalk: #ede8dc;
+  --chalk-dim: #b9c2ba;
+  --coral: #e4785f;
+  --cyan: #5fb8c4;
+  --wood: #5a3b28;
+  --wood-light: #7a5236;
+  --wood-shadow: #2f1d12;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: radial-gradient(circle at 50% 0%, #2a2f2c 0%, #14100d 70%);
+  font-family: "Work Sans", sans-serif;
+  color: var(--chalk);
+}
+
+.frame {
+  padding: 22px;
+  border-radius: 18px;
+  background: linear-gradient(155deg, var(--wood-light), var(--wood) 55%, var(--wood-shadow));
+  box-shadow:
+    0 30px 60px -20px rgba(0, 0, 0, 0.7),
+    inset 0 0 0 2px rgba(0, 0, 0, 0.25);
+}
+
+.board-panel {
+  width: min(420px, 82vw);
+  padding: 32px 28px 28px;
+  border-radius: 10px;
+  background: var(--chalkboard);
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(237, 232, 220, 0.06);
+  text-align: center;
+}
+
+.title {
+  margin: 0 0 18px;
+  font-family: "Caveat", cursive;
+  font-weight: 700;
+  font-size: 3rem;
+  letter-spacing: 0.02em;
+  color: var(--chalk);
+  text-shadow: 0 0 14px rgba(237, 232, 220, 0.15);
+}
+
+.prompt {
+  margin: 0 0 16px;
+  font-family: "Caveat", cursive;
+  font-size: 1.6rem;
+  color: var(--chalk-dim);
+}
+
+.picker-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+.chalk-btn {
+  font-family: "Caveat", cursive;
+  font-size: 1.6rem;
+  padding: 10px 26px;
+  border-radius: 8px;
+  border: 2px solid var(--chalk);
+  background: transparent;
+  color: var(--chalk);
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.chalk-btn:hover {
+  background: var(--chalk);
+  color: var(--chalkboard);
+  transform: translateY(-2px);
+}
+
+.chalk-btn:active {
+  transform: translateY(0);
+}
+
+.chalk-btn.again {
+  margin-top: 20px;
+}
+
+.status {
+  margin: 0 0 18px;
+  min-height: 1.6rem;
+  font-family: "Caveat", cursive;
+  font-size: 1.7rem;
+  color: var(--chalk-dim);
+}
+
+.board {
+  --gap: 6px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: var(--gap);
+  width: min(320px, 68vw);
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
+}
+
+.cell {
+  position: relative;
+  background: rgba(237, 232, 220, 0.03);
+  border: 2px solid rgba(237, 232, 220, 0.5);
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cell:hover:not(.filled) {
+  background: rgba(237, 232, 220, 0.08);
+}
+
+.cell.filled,
+.cell.no-click {
+  cursor: default;
+}
+
+.cell svg {
+  width: 62%;
+  height: 62%;
+  overflow: visible;
+}
+
+.cell svg path,
+.cell svg circle {
+  fill: none;
+  stroke-width: 9;
+  stroke-linecap: round;
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
+  animation: draw 0.35s ease forwards;
+}
+
+.cell.mark-x svg path {
+  stroke: var(--coral);
+}
+
+.cell.mark-o svg circle {
+  stroke: var(--cyan);
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.hidden {
+  display: none !important;
+}
+
+@media (max-width: 420px) {
+  .title {
+    font-size: 2.4rem;
+  }
+}
